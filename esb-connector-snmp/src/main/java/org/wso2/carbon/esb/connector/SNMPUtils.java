@@ -39,12 +39,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+/*
+ * Class SNMPUtils defines the common methods to perform SNMP Connector operations.
+ */
 public class SNMPUtils {
 	private static final Log log = LogFactory.getLog(SNMPUtils.class);
 
 	/**
 	 * Create Target Address object
 	 *
+	 * @param messageContext the message context
 	 * @return target
 	 */
 	public static Target getTarget(MessageContext messageContext) {
@@ -80,6 +84,7 @@ public class SNMPUtils {
 	 * Add the multiple OIDs into PDU
 	 *
 	 * @param oids set of OIDs
+	 * @param pdu SNMP protocol data unit
 	 * @return pdu
 	 */
 	public static PDU addOids(String oids, PDU pdu) throws IOException {
@@ -96,14 +101,13 @@ public class SNMPUtils {
 	}
 
 	/**
-	 * Prepare payload
+	 * Prepare the payload
 	 *
 	 * @param messageContext The message context that is processed by a handler in the handle method
-	 * @param element        OMElement
+	 * @param element        The OMElement
 	 */
 
-	public static void preparePayload(org.apache.synapse.MessageContext messageContext,
-	                                  OMElement element) {
+	public static void preparePayload(MessageContext messageContext, OMElement element) {
 		SOAPBody soapBody = messageContext.getEnvelope().getBody();
 		for (Iterator itr = soapBody.getChildElements(); itr.hasNext(); ) {
 			OMElement child = (OMElement) itr.next();
@@ -118,7 +122,7 @@ public class SNMPUtils {
 	/**
 	 * Create a OMElement
 	 *
-	 * @param output output
+	 * @param output The output string
 	 * @return return resultElement
 	 */
 	public static OMElement transformMessages(String output) throws XMLStreamException {

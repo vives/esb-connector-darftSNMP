@@ -32,9 +32,17 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.util.Vector;
 
+/*
+ * Class SNMPGetBulk is to perform SNMPGetBulk operation.
+ */
 public class SNMPGetBulk extends AbstractConnector implements Connector {
 	private static Snmp snmp;
 
+	/*
+     * Initiate the connection
+     *
+     * @param messageContext the message context
+	 */
 	@Override
 	public void connect(MessageContext messageContext) throws ConnectException {
 		String oids = (String) messageContext.getProperty(SNMPConstants.OIDs);

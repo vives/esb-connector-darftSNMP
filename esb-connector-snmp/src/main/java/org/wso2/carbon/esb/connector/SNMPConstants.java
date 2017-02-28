@@ -17,6 +17,9 @@
  */
 package org.wso2.carbon.esb.connector;
 
+/*
+ * Class SNMPConstants defines all constants used for SNMP Connector.
+ */
 public class SNMPConstants {
 	public static final String HOST = "host";
 	public static final String PORT = "port";

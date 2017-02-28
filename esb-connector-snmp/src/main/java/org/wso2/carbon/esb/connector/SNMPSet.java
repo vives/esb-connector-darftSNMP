@@ -26,7 +26,13 @@ import org.json.JSONObject;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.event.ResponseEvent;
-import org.snmp4j.smi.*;
+import org.snmp4j.smi.Counter64;
+import org.snmp4j.smi.Integer32;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.smi.IpAddress;
+import org.snmp4j.smi.Counter32;
 import org.wso2.carbon.connector.core.AbstractConnector;
 import org.wso2.carbon.connector.core.ConnectException;
 import org.wso2.carbon.connector.core.Connector;
@@ -34,9 +40,17 @@ import org.wso2.carbon.connector.core.Connector;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 
+/*
+ * Class SNMPSet is to perform SNMPSet operation.
+ */
 public class SNMPSet extends AbstractConnector implements Connector {
 	private static Snmp snmp;
 
+	/*
+	 * Initiate the connection
+     *
+     * @param messageContext the message context
+	 */
 	@Override
 	public void connect(MessageContext messageContext) throws ConnectException {
 		String updateOids = (String) messageContext.getProperty(SNMPConstants.UPDATE_OIDS);
@@ -99,8 +113,9 @@ public class SNMPSet extends AbstractConnector implements Connector {
 	/**
 	 * Add the OIDs and values into PDU
 	 *
-	 * @param updateOids set of OIDs, it's values and data type
-	 * @return pdu
+	 * @param updateOids     set of OIDs, it's values and data type
+	 * @param pdu            SNMP protocol data unit
+	 * @param messageContext the message context
 	 */
 	private void addPDU(String updateOids, PDU pdu, MessageContext messageContext) {
 		if (StringUtils.isNotEmpty(updateOids)) {

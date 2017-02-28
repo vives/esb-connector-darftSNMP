@@ -31,9 +31,17 @@ import org.wso2.carbon.connector.core.Connector;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 
+/*
+ * Class SNMPGet is to perform SNMPGet operation.
+ */
 public class SNMPGet extends AbstractConnector implements Connector {
 	private static Snmp snmp;
 
+	/*
+     * Initiate the connection
+     *
+     * @param messageContext the message context
+	 */
 	@Override
 	public void connect(MessageContext messageContext) throws ConnectException {
 		String oids = (String) messageContext.getProperty(SNMPConstants.OIDs);

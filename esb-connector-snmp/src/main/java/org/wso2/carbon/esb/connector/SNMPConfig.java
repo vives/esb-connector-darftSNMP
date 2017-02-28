@@ -28,10 +28,15 @@ import org.wso2.carbon.connector.core.Connector;
 
 import java.io.IOException;
 
+/*
+ * Class for initiate the SNMP Connector
+ */
 public class SNMPConfig extends AbstractConnector implements Connector {
 
-	/**
-	 * @param messageContext The message context that is processed by a handler in the handle method
+	/*
+     * Initiate the connection
+     *
+     * @param messageContext the message context
 	 */
 	@Override
 	public void connect(MessageContext messageContext) throws ConnectException {
@@ -46,6 +51,8 @@ public class SNMPConfig extends AbstractConnector implements Connector {
 	 * Start the Snmp session. If you communication or get the listen() method you will not get any
 	 * answers because
 	 * the  is asynchronous and the listen() method listens for answers.
+	 *
+	 * @param messageContext the message context
 	 */
 	private void start(MessageContext messageContext) throws IOException {
 		TransportMapping transport = new DefaultUdpTransportMapping();
